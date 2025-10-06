@@ -4,17 +4,17 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='sales']" position="after">
+            <xpath expr="//filter[@name='filter_create_date']" position="after">
                 <separator/>
-                <filter string="Today" name="today" domain="[('date_order','&gt;=',time.strftime('%%Y-%%m-%%d'))]"/>
-                <filter string="This Week" name="thisweek"
+                <filter string="Today" name="filter_order_today" domain="[('date_order','&gt;=',time.strftime('%%Y-%%m-%%d'))]"/>
+                <filter string="This Week" name="filter_order_thisweek"
                             domain="[
                                 '&amp;',
                                 ('date_order', '>=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
                                 ('date_order', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),
                             ]"/>
-                <filter string="This Month" name="thismonth" domain="[('date_order','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
-                <filter string="This Year" name="thisyear" domain="[('date_order','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <filter string="This Month" name="filter_order_thismonth" domain="[('date_order','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
+                <filter string="This Year" name="filter_order_thisyear" domain="[('date_order','&gt;=',time.strftime('%%Y-01-01'))]"/>
                 <separator/>
             </xpath>
         </field>
@@ -24,17 +24,17 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale"/>
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='sales']" position="after">
+            <xpath expr="//filter[@name='order_date']" position="after">
                 <separator/>
-                <filter string="Today" name="today" domain="[('date_order','&gt;=',time.strftime('%%Y-%%m-%%d'))]"/>
-                <filter string="This Week" name="thisweek"
+                <filter string="Today" name="filter_order_today" domain="[('date_order','&gt;=',time.strftime('%%Y-%%m-%%d'))]"/>
+                <filter string="This Week" name="filter_order_thisweek"
                             domain="[
                                 '&amp;',
                                 ('date_order', '>=', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
                                 ('date_order', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d')),
                             ]"/>
-                <filter string="This Month" name="thismonth" domain="[('date_order','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
-                <filter string="This Year" name="thisyear" domain="[('date_order','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <filter string="This Month" name="filter_order_thismonth" domain="[('date_order','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
+                <filter string="This Year" name="filter_order_thisyear" domain="[('date_order','&gt;=',time.strftime('%%Y-01-01'))]"/>
                 <separator/>
             </xpath>
         </field>

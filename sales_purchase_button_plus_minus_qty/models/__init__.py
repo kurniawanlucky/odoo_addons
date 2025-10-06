@@ -1,2 +1,0 @@
-import sale_order_line
-import purchase_order_line
