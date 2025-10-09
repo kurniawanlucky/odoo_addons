@@ -16,6 +16,7 @@ Easily filter and analyze your customer invoices by specific date ranges.
 - This Year
     """,
     'author': 'Lucky Kurniawan',
+    'website': 'https://github.com/kurniawanlucky/odoo_addons',
     'depends': ['account'],
     'images': ['static/description/banner.png'],
     'data': [

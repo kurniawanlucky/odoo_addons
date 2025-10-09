@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form" model="ir.ui.view">
+        <field name="name">hr_employee_age_calculator.view_employee_form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="birthday" position="after">
+                <div name="age_employee">
+                    <label for="age"/>
+                    <field name="age" class="oe_inline mx-1"/>
+                    <span class="o_form_label">Years old</span>
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>
