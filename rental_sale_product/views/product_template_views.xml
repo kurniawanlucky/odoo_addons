@@ -1,0 +1,45 @@
+<!-- File: views/product_template_rental_views.xml -->
+<odoo>
+    <record id="product_template_rental_form_view" model="ir.ui.view">
+        <field name="name">rental_sale_product.product_template_form_view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="rental_product_base.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='product_rental']" position="after">
+                <group name="rental_info" string="Rental Info" invisible="type != 'rental'">
+                    <field name="total_rental_qty"/>
+                    <field name="rental_active_count" readonly="1"/>
+                    <field name="rental_available_qty" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">rental_sale_product.product_template_form_view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button name="action_view_rental_orders"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-calendar">
+                    <field string="Active Rentals"
+                           name="rental_active_count"
+                           widget="statinfo"
+                           decoration-danger="rental_active_count >= total_rental_qty"/>
+                </button>
+                <button type="object"
+                        name="action_view_rental_orders"
+                        class="oe_stat_button"
+                        icon="fa-check">
+                    <div>
+                        <span>Available:</span>
+                        <field name="rental_available_qty" nolabel="1"/>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

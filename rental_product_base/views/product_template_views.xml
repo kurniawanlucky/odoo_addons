@@ -6,10 +6,17 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='internal_notes']" position="before">
                 <group name="product_rental" string="Rental" invisible="type != 'rental'">
-                    <field name="rental_price_per_hour" />
-                    <field name="rental_price_per_week" />
-                    <field name="rental_price_per_day" />
-                    <field name="deposit_amount" />
+                    <group>
+                        <field name="rental_price_per_hour" />
+                        <field name="rental_price_per_week" />
+                        <field name="rental_price_per_day" />
+                        <field name="deposit_amount" />
+                    </group>
+                    <group>
+                        <field name="rental_min_hours" />
+                        <field name="rental_min_weeks" />
+                        <field name="rental_min_days" />
+                    </group>
                 </group>
             </xpath>
         </field>

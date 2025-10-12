@@ -1,0 +1,171 @@
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h2 class="oe_slogan" style="color:#875A7B;">Rental Management System</h2>
+    <h3 class="oe_slogan">Manage rental products, availability, pricing, and scheduling easily</h3>
+    <div class="oe_span12">
+      <p class="oe_mt32">
+        This module extends the Odoo Sales and Product apps to provide a complete rental workflow.
+        It allows you to define rental products, set hourly/daily/weekly pricing, control availability, and prevent double bookings.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Key Features -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Key Features</h3>
+    <div class="oe_span6">
+      <ul class="list-unstyled">
+        <li>New <b>Product Type: Rental</b></li>
+        <li>Flexible pricing: per hour, per day, or per week</li>
+        <li>Rental duration with automatic breakdown (weeks / days / hours)</li>
+        <li>Prevent overlapping rentals (double booking protection)</li>
+        <li>Availability count and smart buttons on product form</li>
+        <li>Calendar view to visualize ongoing and upcoming rentals</li>
+        <li>Auto-calculated total rental price</li>
+      </ul>
+    </div>
+    <div class="oe_span6">
+      <img class="oe_picture oe_screenshot" src="banner.png" alt="Rental Dashboard Example" />
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Example -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Rental Pricing Setup Example</h3>
+    <div class="oe_span12">
+      <table class="table table-bordered">
+        <thead style="background-color:#EEE;">
+          <tr>
+            <th>Field Name</th>
+            <th>Description</th>
+            <th>Example Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>rental_price_per_hour</b></td>
+            <td>Price for 1 hour rental</td>
+            <td>10.00</td>
+          </tr>
+          <tr>
+            <td><b>rental_price_per_day</b></td>
+            <td>Price for 1 day rental (24h)</td>
+            <td>100.00</td>
+          </tr>
+          <tr>
+            <td><b>rental_price_per_week</b></td>
+            <td>Price for 1 week rental (7 days)</td>
+            <td>600.00</td>
+          </tr>
+          <tr>
+            <td><b>rental_min_hours</b></td>
+            <td>Minimum hours that can be rented</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td><b>rental_min_days</b></td>
+            <td>Minimum days that can be rented</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><b>rental_min_weeks</b></td>
+            <td>Minimum weeks that can be rented</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Example: If a product is rented for <b>1 day 4 hours</b> and your pricing is as above:</p>
+      <ul>
+        <li>1 Day × 100 = 100</li>
+        <li>4 Hours × 10 = 40</li>
+        <li><b>Total Price = 140.00</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Product Form -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Product Form Enhancements</h3>
+    <div class="oe_span6">
+      <ul class="list-unstyled">
+        <li>Field: <b>Total Rental Units</b> → Define how many identical units are available.</li>
+        <li>Field: <b>Currently Rented</b> → Shows how many units are currently rented.</li>
+        <li>Field: <b>Available Units</b> → Auto-computed from total units minus rented ones.</li>
+        <li>Smart Buttons:
+          <ul>
+            <li>Active Rentals → Opens related rental orders.</li>
+            <li>Availability → Shows how many units are available now.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="oe_span6">
+      <img class="oe_picture oe_screenshot" src="banner.png" alt="Rental Product Form Example" />
+    </div>
+  </div>
+</section>
+
+<!-- Calendar -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Rental Calendar View</h3>
+    <div class="oe_span12">
+      <p>
+        The module includes a <b>Rental Calendar</b> view that helps you see all current and upcoming rental bookings.
+        Each product is color-coded, and you can quickly detect overlapping or upcoming returns.
+      </p>
+      <img class="oe_picture oe_screenshot" src="rental_calendar_view.png" alt="Rental Calendar View Example" />
+    </div>
+  </div>
+</section>
+
+<!-- Availability Logic -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Availability Logic Example</h3>
+    <div class="oe_span12">
+      <pre style="background:#f6f6f6; padding:15px; border-radius:8px;">
+<b>Example:</b>
+Total Rental Units: 3
+
+Current Orders:
+Order A → 2025-10-10 to 2025-10-12
+Order B → 2025-10-11 to 2025-10-15
+
+On 2025-10-11, 2 units are rented → 1 still available.
+On 2025-10-13, both are rented → 1 available.
+On 2025-10-16, all are free again.
+      </pre>
+    </div>
+  </div>
+</section>
+
+<!-- Warning and Constraints -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Rental Validation and Warnings</h3>
+    <div class="oe_span12">
+      <ul>
+        <li>Prevents selecting rental dates that overlap with existing rentals.</li>
+        <li>Shows instant warning popup when product is not available.</li>
+        <li>Automatically rounds duration (e.g. 28 hours → 1 day 4 hours).</li>
+        <li>Auto-calculates total rental amount based on selected duration.</li>
+      </ul>
+      <img class="oe_picture oe_screenshot" src="rental_warning.png" alt="Rental Overlap Warning Example" />
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<section class="oe_container oe_separator">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Simplify and automate your rental operations</h3>
+    <p class="oe_centeralign">Track, price, and manage your rentals effortlessly in Odoo.</p>
+  </div>
+</section>

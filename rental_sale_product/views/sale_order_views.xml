@@ -1,0 +1,74 @@
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">rental_sale_product.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <field name="order_line" position="attributes">
+                <attribute name="widget"/>
+                <attribute name="mode">form,list,kanban</attribute>
+            </field>
+
+            <xpath expr="//field[@name='order_line']/list" position="attributes">
+                <attribute name="editable"/>
+            </xpath>
+
+            <!-- Tree view -->
+            <xpath expr="//field[@name='order_line']/list/field[@name='price_unit']" position="before">
+                <field name="rental_start_date" widget="datetime"/>
+                <field name="rental_end_date" widget="datetime"/>
+                <field name="rental_duration_hours" readonly="1"/>
+                <field name="rental_pricing_breakdown" readonly="1"/>
+                <field name="rental_total_price" readonly="1"/>
+            </xpath>
+
+            <!-- Form view -->
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="before">
+                <field name="rental_start_date" widget="datetime"/>
+                <field name="rental_end_date" widget="datetime"/>
+                <field name="rental_duration_hours" readonly="1"/>
+                <field name="rental_pricing_breakdown" readonly="1"/>
+                <field name="rental_total_price" readonly="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_sale_rental_calendar" model="ir.ui.view">
+        <field name="name">sale.order.line.rental.calendar</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <calendar string="Rental Schedule"
+                      date_start="rental_start_date"
+                      date_stop="rental_end_date"
+                      color="product_id">
+                <field name="order_id"/>
+                <field name="product_id"/>
+                <field name="rental_start_date"/>
+                <field name="rental_end_date"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="sale_rental_view_calendar" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="view_sale_rental_calendar"/>
+        <field name="act_window_id" ref="action_sale_rental_calendar"/>
+    </record>
+
+    <record id="action_sale_rental_calendar" model="ir.actions.act_window">
+        <field name="name">Rental Calendar</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="view_sale_rental_calendar"/>
+        <field name="domain">[('product_id.type','=','rental')]</field>
+    </record>
+
+    <menuitem id="menu_sale_rental_calendar"
+              name="Rental Calendar"
+              parent="sale.sale_order_menu"
+              action="action_sale_rental_calendar"
+              sequence="50"/>
+</odoo>
