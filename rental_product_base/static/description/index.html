@@ -1,0 +1,111 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Rental Product Base</h2>
+        <h3 class="oe_slogan">Base for Rental Product Configuration in Odoo</h3>
+        <p class="oe_mt32">
+            The <b>Rental Product Base</b> module extends Odoo’s product model to support
+            rental-specific configurations.
+            It introduces a new product type <b>Rental</b> and adds pricing options
+            for hourly, daily, and weekly rental durations.
+        </p>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <img class="oe_picture oe_screenshot" src="banner.png" alt="Rental Dashboard Example" />
+        <h3 class="oe_slogan">Key Features</h3>
+        <div class="oe_span12">
+            <ul>
+                <li>Adds new product type: <b>Rental</b></li>
+                <li>Supports pricing per hour, day, and week</li>
+                <li>Defines minimum rental durations (hours, days, weeks)</li>
+                <li>Fully compatible with Odoo Sales and Inventory for future extensions</li>
+                <li>Provides foundation for other rental-related modules</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Added Fields on Product Template</h3>
+        <div class="oe_span12">
+            <table class="table table-condensed table-bordered" style="width:80%; margin:auto;">
+                <thead style="background:#f0f0f0;">
+                    <tr>
+                        <th>Field Name</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>type</b></td>
+                        <td>New product type “Rental” added to the existing list</td>
+                        <td>rental</td>
+                    </tr>
+                    <tr>
+                        <td><b>rental_price_per_hour</b></td>
+                        <td>Rental price per hour</td>
+                        <td>Rp 15,000</td>
+                    </tr>
+                    <tr>
+                        <td><b>rental_price_per_day</b></td>
+                        <td>Rental price per day</td>
+                        <td>Rp 100,000</td>
+                    </tr>
+                    <tr>
+                        <td><b>rental_price_per_week</b></td>
+                        <td>Rental price per week</td>
+                        <td>Rp 500,000</td>
+                    </tr>
+                    <tr>
+                        <td><b>rental_min_hours</b></td>
+                        <td>Minimum hours allowed for rental</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td><b>rental_min_days</b></td>
+                        <td>Minimum days allowed for rental</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><b>rental_min_weeks</b></td>
+                        <td>Minimum weeks allowed for rental</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Example Usage</h3>
+        <div class="oe_span12">
+            <p>
+                When creating or editing a product in Odoo:
+            </p>
+            <ol>
+                <li>Set <b>Product Type</b> = <code>Rental</code></li>
+                <li>Enter rental prices:
+                    <ul>
+                        <li>Rental Price / Hour</li>
+                        <li>Rental Price / Day</li>
+                        <li>Rental Price / Week</li>
+                    </ul>
+                </li>
+                <li>Optionally define minimum durations to control rental limits.</li>
+            </ol>
+            <p>
+                Once configured, these fields can be used by other modules such as
+                <b>rental_sale_product</b> and <b>rental_sale_delivery</b> to
+                manage rental transactions and delivery handling.
+            </p>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Related Modules</h3>
+        <ul>
+            <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_sale_product">rental_sale_product</a></b> – Adds rental duration calculation and sale order support</li>
+            <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_sale_delivery">rental_sale_delivery</a></b> – Adds delivery carriers (Uber, Gojek, Grab) for rental items</li>
+        </ul>
+    </div>
+</section>
