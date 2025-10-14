@@ -1,0 +1,17 @@
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">rental_product_maintenance.product_template_form_view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button name="action_view_maintenance"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-wrench"
+                    string="Maintenance"
+                    invisible="type != 'rental'"/>
+            </div>
+        </field>
+    </record>
+</odoo>

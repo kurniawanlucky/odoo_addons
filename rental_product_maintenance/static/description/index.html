@@ -1,0 +1,93 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Rental Maintenance Integration</h2>
+        <h3 class="oe_slogan">Manage Maintenance for Rental Products in Odoo</h3>
+        <p>
+            This module integrates <b>rental products</b> with Odoo’s built-in Maintenance app.
+            It ensures that rental products (like bikes, vehicles, or equipment) cannot be rented
+            while they are scheduled for maintenance. It also enhances maintenance records
+            by displaying the rental product in the name and in calendar views.
+        </p>
+        <img class="oe_picture oe_screenshot" src="img_2.png" alt="Rental Dashboard Example" />
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Key Features</h3>
+        <ul>
+            <li>Link maintenance requests to rental products using <code>rental_product_id</code></li>
+            <li>Automatically prevent selecting a rental product that is under active maintenance</li>
+            <li>Override <code>name_get()</code> to show rental product in the maintenance request name</li>
+            <li>Display rental product in calendar events</li>
+            <li>Convert UTC maintenance times to user timezone in warnings</li>
+        </ul>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Example Maintenance Request Fields</h3>
+        <table class="table table-condensed table-bordered" style="width:80%; margin:auto;">
+            <thead style="background:#f0f0f0;">
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>rental_product_id</b></td>
+                    <td>Rental product associated with this maintenance request</td>
+                </tr>
+                <tr>
+                    <td><b>schedule_date</b></td>
+                    <td>Maintenance start date and time (UTC stored)</td>
+                </tr>
+                <tr>
+                    <td><b>duration</b></td>
+                    <td>Estimated maintenance duration in hours</td>
+                </tr>
+                <tr>
+                    <td><b>maintenance_end_datetime</b></td>
+                    <td>Computed field: <code>schedule_date + duration</code></td>
+                </tr>
+                <tr>
+                    <td><b>name</b></td>
+                    <td>Automatically shows maintenance name with rental product, e.g., <code>Full Service (Bike A)</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Active Maintenance Check</h3>
+        <img class="oe_picture oe_screenshot" src="img.png" alt="Rental Dashboard Example" />
+        <p>
+            When creating a maintenance request, the system prevents selecting a rental product
+            that already has an active maintenance scheduled.
+            Example: <code>Bike A</code> is under maintenance from <b>2025-10-15 08:00</b> to <b>2025-10-15 10:00</b>.
+            Attempting to create another maintenance during this period will show a warning in the user's timezone.
+        </p>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Calendar View Enhancements</h3>
+        <img class="oe_picture oe_screenshot" src="img_1.png" alt="Rental Dashboard Example" />
+        <ul>
+            <li>Maintenance requests linked to rental products show the product name in calendar events</li>
+            <li>Color-code events by rental product (optional)</li>
+            <li>Filter calendar to show only rental product maintenance</li>
+        </ul>
+        <p>Example displayed in calendar:</p>
+        <ul>
+            <li><b>Full Service (Bike A)</b></li>
+            <li><b>Wash (Bike B)</b></li>
+        </ul>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Related Modules</h3>
+        <ul>
+            <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_product_base">rental_product_base</a></b> – provides product rental core (durations, pricing, availability)</li>
+            <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_sale_product">rental_sale_product</a></b> – enables rentals to be sold via Sales Orders</li>
+            <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_sale_delivery">rental_sale_delivery</a></b> – Adds delivery carriers for rental items</li>
+        </ul>
+    </div>
+</section>

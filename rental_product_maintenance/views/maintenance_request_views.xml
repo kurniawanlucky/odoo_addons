@@ -1,0 +1,15 @@
+<odoo>
+    <record id="rental_product_maintenance" model="ir.ui.view">
+        <field name="name">rental_product_maintenance</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <field name="equipment_id" position="before">
+                <field name="rental_product_id"/>
+            </field>
+            <xpath expr="//label[@for='recurring_maintenance']" position="before">
+                <field name="maintenance_end_datetime"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
