@@ -1,0 +1,105 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Rental Sale Maintenance</h2>
+        <h3 class="oe_slogan">Prevent rental and maintenance time conflicts</h3>
+        <div class="oe_span12">
+            <p>
+                <b>Rental Sale Maintenance</b> is an integration module that ensures
+                <b>rental products</b> cannot be rented and maintained at the same time.
+                It acts as a bridge between
+                <code>rental_sale_product</code> and <code>rental_maintenance</code>.
+            </p>
+            <p>
+                The module automatically checks overlapping schedules between rental
+                sale orders and maintenance requests, ensuring resource availability and
+                preventing conflicts.
+            </p>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Conflict Prevention Rules</h3>
+        <img class="oe_picture oe_screenshot" src="banner.png" alt="Rental Dashboard Example" />
+        <div class="oe_span12">
+            <ul>
+                <li><b>Rental → Maintenance:</b> A product already rented cannot be selected for maintenance if rental dates overlap.</li>
+                <li><b>Maintenance → Rental:</b> A product under maintenance cannot be selected in new rental orders during the maintenance period.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Technical Overview</h3>
+        <div class="oe_span12">
+            <p>The module extends both <code>sale.order.line</code> and <code>maintenance.request</code>:</p>
+            <ul>
+                <li>Checks active rentals before confirming maintenance requests.</li>
+                <li>Checks active maintenances before confirming rental sale orders.</li>
+                <li>All datetime comparisons are done in UTC; user-facing warnings are shown in the user's timezone.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">How It Works</h3>
+        <div class="oe_span12">
+            <pre style="background-color:#f7f7f7; padding:10px; border-radius:8px;">
+Example:
+Product: Bike A
+Rental:  2025-10-16 09:00 → 2025-10-17 09:00
+Maintenance: 2025-10-16 08:00 → 2025-10-16 12:00
+
+Result:
+When scheduling maintenance, Odoo shows:
+"Bike A is currently rented from 2025-10-16 09:00 to 2025-10-17 09:00.
+Maintenance cannot be scheduled in this period."
+            </pre>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Module Dependencies</h3>
+        <div class="oe_span12">
+            <ul>
+                <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_sale_product">rental_sale_product</a></b> — manages rental sales and durations</li>
+                <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_product_maintenance">rental_maintenance</a></b> — handles maintenance requests for rental items</li>
+            </ul>
+            <p>This module requires both dependencies to be installed first.</p>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Installation Steps</h3>
+        <div class="oe_span12">
+            <ol>
+                <li>Install <b>rental_product_base</b>.</li>
+                <li>Install <b>rental_sale_product</b>.</li>
+                <li>Install <b>rental_maintenance</b>.</li>
+                <li>Finally, install <b>rental_sale_maintenance</b>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Recommended Features</h3>
+        <div class="oe_span12">
+            <ul>
+                <li>Smart button on rental product showing current rentals and maintenances.</li>
+                <li>Unified calendar view to see both rental and maintenance events.</li>
+                <li>Optional buffer time between rentals for cleaning or service.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 class="oe_slogan">Summary</h3>
+            <p>
+                <b>Rental Sale Maintenance</b> provides a critical scheduling safeguard between
+                <b>rental</b> and <b>maintenance</b> operations, ensuring no overlapping resource use.
+                It’s an essential module for businesses managing high-value assets with rental and
+                upkeep requirements.
+            </p>
+        </div>
+    </div>
+</section>
