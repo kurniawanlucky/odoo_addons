@@ -5,10 +5,10 @@ from odoo.exceptions import ValidationError
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.constrains('product_id', 'start_date', 'end_date')
+    @api.constrains('product_id', 'rental_start_date', 'rental_end_date')
     def _check_maintenance_conflict(self):
         for line in self:
-            if line.product_id != 'rental' or (not line.product_id or not line.start_date or not line.end_date):
+            if line.product_id.type != 'rental' or (not line.product_id or not line.rental_start_date or not line.rental_end_date):
                 continue
 
             maintenance = self.env['maintenance.request'].search([

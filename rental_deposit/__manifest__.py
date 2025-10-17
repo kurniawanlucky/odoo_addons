@@ -8,7 +8,7 @@
     'author': 'Lucky Kurniawan',
     'website': 'https://github.com/kurniawanlucky/odoo_addons',
     'category': 'Rental',
-    'depends': ['rental_sale_product'],
+    'depends': ['rental_sale_product', 'rental_product_base'],
     'data': [
         'data/product_template_data.xml',
         'views/product_template_views.xml',
