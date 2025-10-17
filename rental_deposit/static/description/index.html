@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rental Deposit Module</title>
+    <style>
+        body { font-family: "Segoe UI", sans-serif; margin: 40px; background: #fafafa; color: #333; }
+        h1, h2 { color: #005f99; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 6px; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #eee; }
+        code { color: #d63384; }
+    </style>
+</head>
+<body>
+    <h1>Rental Deposit Module</h1>
+    <p>
+        This module adds automatic deposit management for rental products. It ensures that every rental order includes a deposit line,
+        calculated based on configuration and product setup.
+    </p>
+
+    <h2>Features</h2>
+    <img class="oe_picture oe_screenshot" src="banner.png" alt="Rental Dashboard Example" />
+    <ul>
+        <li>Configurable deposit per rental product</li>
+        <li>Automatic deposit line added to Sale Orders</li>
+        <li>Supports <b>Sum</b> or <b>Max</b> deposit calculation methods</li>
+        <li>Deposit refund tracking (manual or automated)</li>
+    </ul>
+
+    <h2>Example Configuration</h2>
+    <img class="oe_picture oe_screenshot" src="img.png" alt="Rental Dashboard Example" />
+    <table>
+        <tr><th>Product</th><th>Deposit Amount</th></tr>
+        <tr><td>Bike A</td><td>100</td></tr>
+        <tr><td>Bike B</td><td>150</td></tr>
+    </table>
+    <p><b>Configuration:</b> Calculation Method = Max → Deposit = 150</p>
+
+    <h2>Technical Fields</h2>
+    <ul>
+        <li><code>product.template.rental_deposit_amount</code> – Float, deposit per product</li>
+        <li><code>res.config.settings.rental_deposit_calculation</code> – Selection (Sum / Max)</li>
+    </ul>
+
+    <h2>Example Behavior</h2>
+    <pre>
+    Sale Order:
+        Product: Bike A (Rental) - 2 Days
+        Product: Bike B (Rental) - 1 Day
+
+    Auto-generated line:
+        Product: Rental Deposit
+        Amount: 150 (Maximum)
+    </pre>
+
+    <h2>Deposit Product</h2>
+    <p>
+        A system product named <b>"Rental Deposit"</b> is automatically used for deposit tracking.
+    </p>
+</body>
+</html>
