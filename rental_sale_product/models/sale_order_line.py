@@ -5,6 +5,7 @@ from odoo.exceptions import ValidationError
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    product_type = fields.Selection(relation='product.product_type', string='Product Type', readonly=True)
     rental_start_date = fields.Datetime(string="Rental Start")
     rental_end_date = fields.Datetime(string="Rental End")
     rental_duration_hours = fields.Float(string="Duration (Hours)", compute="_compute_rental_duration", store=True)

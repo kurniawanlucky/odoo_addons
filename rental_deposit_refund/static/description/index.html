@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Rental Deposit & Refund Management</title>
+    <style>
+      body {
+        font-family: "Lato", "Open Sans", sans-serif;
+        color: #444;
+        margin: 0;
+        padding: 0;
+        background-color: #fafafa;
+      }
+      .container {
+        max-width: 960px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+      h1 {
+        color: #007bff;
+        font-size: 28px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      h2 {
+        color: #444;
+        font-size: 22px;
+        margin-top: 30px;
+      }
+      p {
+        line-height: 1.6;
+        margin: 10px 0;
+      }
+      ul, ol {
+        margin: 10px 0 20px 25px;
+      }
+      li {
+        margin-bottom: 5px;
+      }
+      .screenshot {
+        text-align: center;
+        margin: 20px 0;
+      }
+      .screenshot img {
+        max-width: 100%;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+      }
+      .highlight {
+        background: #f4f9ff;
+        border-left: 4px solid #007bff;
+        padding: 10px 15px;
+        border-radius: 6px;
+        margin: 15px 0;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 13px;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Rental Deposit & Refund Management</h1>
+      <div class="screenshot">
+        <img src="img.png" alt="Rental Deposit Dashboard" />
+      </div>
+      <p>
+        The <strong>Rental Deposit & Refund</strong> module extends Odoo’s rental
+        and accounting workflows by allowing you to manage customer deposit
+        invoices, refund tracking, and deposit balance visibility directly from
+        partners and rental orders.
+      </p>
+
+      <h2>Key Features</h2>
+      <ul>
+        <li>Automatically generate deposit invoices for rental orders.</li>
+        <li>Track deposit and refund invoices per customer.</li>
+        <li>Manage deposit balances and refund states (Draft, Invoiced, Refunded).</li>
+        <li>Smart button on customer form to view all rental deposits.</li>
+        <li>Clear list and form views for all deposit transactions.</li>
+        <li>Integrated with <code>account.move</code> for full accounting consistency.</li>
+      </ul>
+
+      <h2>Smart Button: Customer Deposit Overview</h2>
+      <div class="screenshot">
+        <img src="img_1.png" alt="Rental Deposit Dashboard" />
+      </div>
+      <div class="highlight">
+        <p>
+          A new <strong>“Deposits” smart button</strong> is added to the customer form
+          (<code>res.partner</code>).
+          It allows you to instantly see:
+        </p>
+        <ul>
+          <li>All deposits made by the customer.</li>
+          <li>Linked deposit and refund invoices.</li>
+          <li>Outstanding balances and refund status.</li>
+        </ul>
+        <p>
+          Clicking the button opens a filtered view of the <strong>Rental Deposits</strong>
+          related to that customer — giving you a quick financial overview without leaving
+          the customer record.
+        </p>
+      </div>
+
+      <h2>How It Works</h2>
+      <ol>
+        <li>
+          From a Rental Order, click <strong>Create Deposit Invoice</strong> to
+          generate a new deposit invoice.
+        </li>
+        <li>
+          When the invoice is validated, a <strong>Rental Deposit</strong> record
+          is created automatically.
+        </li>
+        <li>
+          Upon return or cancellation, create a refund invoice to return the
+          deposit. The deposit record automatically links to the refund invoice.
+        </li>
+        <li>
+          Check the customer’s deposit balance anytime using the
+          <strong>Deposits Smart Button</strong> on the partner form.
+        </li>
+      </ol>
+
+      <div class="screenshot">
+        <img src="banner.png" alt="Rental Deposit Dashboard" />
+      </div>
+
+      <h2>Technical Details</h2>
+      <ul>
+        <li>Model: <code>rental.deposit</code></li>
+        <li>Invoice Relation: <code>deposit_invoice_id</code> & <code>refund_invoice_id</code></li>
+        <li>Sequence: <code>RD00001</code>, <code>RD00002</code>, …</li>
+        <li>Smart Button: <code>action_view_rental_deposits()</code> on <code>res.partner</code></li>
+        <li>Menu: <strong>Rental → Deposits</strong></li>
+      </ul>
+
+      <div class="footer">
+        <p>
+          © 2025 Rental Deposit & Refund System — Developed for Odoo 18.0 by
+          Lucky Kurniawan.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

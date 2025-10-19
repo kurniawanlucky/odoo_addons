@@ -1,0 +1,16 @@
+<odoo>
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="name">rental_deposit_refund.view_partner_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_rental_deposits" type="object"
+                        class="oe_stat_button" icon="fa-money">
+                    <field string="Deposits" name="deposit_count" widget="statinfo"
+                           decoration-info="total_deposit_balance"/>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

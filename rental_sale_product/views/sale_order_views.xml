@@ -25,8 +25,9 @@
 
             <!-- Form view -->
             <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="before">
-                <field name="rental_start_date" widget="datetime"/>
-                <field name="rental_end_date" widget="datetime"/>
+                <field name="product_type" invisible="1"/>
+                <field name="rental_start_date" widget="datetime" required="product_type == 'rental'"/>
+                <field name="rental_end_date" widget="datetime" required="product_type == 'rental'"/>
                 <field name="rental_duration_hours" readonly="1"/>
                 <field name="rental_pricing_breakdown" readonly="1"/>
                 <field name="rental_total_price" readonly="1"/>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rental_deposit_user,rental.deposit user,model_rental_deposit,sales_team.group_sale_salesman,1,1,1,0
+access_rental_deposit_manager,rental.deposit manager,model_rental_deposit,sales_team.group_sale_manager,1,1,1,1
