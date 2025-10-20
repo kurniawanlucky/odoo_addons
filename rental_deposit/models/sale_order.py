@@ -4,8 +4,10 @@ from odoo import models, fields, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    @api.onchange('order_line')
-    def _onchange_add_rental_deposit(self):
+    def action_rental_add_deposit(self):
+        self._add_rental_deposit()
+
+    def _add_rental_deposit(self):
         for order in self:
             deposit_product = self.env.ref('rental_deposit.product_product_rental_deposit')
             rental_lines = order.order_line.filtered(lambda l: l.product_id.type == 'rental')

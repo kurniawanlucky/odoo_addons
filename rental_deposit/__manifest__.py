@@ -12,6 +12,7 @@
     'data': [
         'data/product_template_data.xml',
         'views/product_template_views.xml',
+        'views/sale_order_views.xml',
     ],
     'images': ['static/description/banner.png'],
     'license': 'AGPL-3',
