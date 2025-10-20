@@ -11,10 +11,6 @@
         </field>
     </record>
 
-    <!-- Main menu for Rental Deposits under Rental -->
-    <menuitem id="menu_rental_root" name="Rental" sequence="10"/>
-    <menuitem id="menu_rental_deposits" name="Deposits" parent="menu_rental_root" sequence="20" action="action_rental_deposit"/>
-
     <!-- Tree/List View -->
     <record id="view_rental_deposit_tree" model="ir.ui.view">
         <field name="name">rental.deposit.tree</field>
@@ -60,4 +56,6 @@
             </form>
         </field>
     </record>
+
+    <menuitem id="menu_rental_deposits" name="Deposits" parent="rental_base.menu_rental_root" sequence="20" action="action_rental_deposit"/>
 </odoo>
