@@ -8,7 +8,7 @@
     'author': 'Lucky Kurniawan',
     'website': 'https://github.com/kurniawanlucky/odoo_addons',
     'category': 'Rental Management',
-    'depends': ['rental_base', 'rental_deposit'],
+    'depends': ['rental_menu_base', 'rental_deposit'],
     'data': [
         'security/ir.model.access.csv',
         'data/rental_deposit_sequence.xml',

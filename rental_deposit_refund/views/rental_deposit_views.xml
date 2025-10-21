@@ -57,5 +57,5 @@
         </field>
     </record>
 
-    <menuitem id="menu_rental_deposits" name="Deposits" parent="rental_base.menu_rental_root" sequence="20" action="action_rental_deposit"/>
+    <menuitem id="menu_rental_deposits" name="Deposits" parent="rental_menu_base.menu_rental_root" sequence="20" action="action_rental_deposit"/>
 </odoo>
