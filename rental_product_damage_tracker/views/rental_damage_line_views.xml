@@ -1,0 +1,98 @@
+<odoo>
+    <record id="view_rental_damage_line_tree" model="ir.ui.view">
+        <field name="name">rental.damage.line.tree</field>
+        <field name="model">rental.damage.line</field>
+        <field name="arch" type="xml">
+            <list string="Damage Findings" default_order="state, id desc">
+                <field name="state" widget="badge"/>
+                <field name="report_date"/>
+                <field name="product_id"/>
+                <field name="area"/>
+                <field name="severity"/>
+                <field name="name"/>
+                <field name="damage_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_rental_damage_line_form" model="ir.ui.view">
+        <field name="name">rental.damage.line.form</field>
+        <field name="model">rental.damage.line</field>
+        <field name="arch" type="xml">
+            <form string="Damage Finding">
+                <header>
+                    <button name="action_mark_fixed" string="Fixed"
+                        type="object" class="oe_highlight" data-hotkey="c" title="Fixed"
+                        invisible="state == 'fixed'"/>
+                    <button name="action_reopen" string="Reopen"
+                        type="object" class="oe_highlight" data-hotkey="c" title="reOpen"
+                        invisible="state == 'open'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <field
+                        name="cover_image"
+                        widget="image"
+                        class="oe_avatar"
+                        options="{'size': [256, 256]}"
+                    />
+                    <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="name" options="{'line_breaks': False}" widget="text" placeholder="e.g. Bumper"/>
+                            </div>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id" readonly="1"/>
+                            <field name="area"/>
+                            <field name="severity"/>
+                        </group>
+                        <group>
+                            <field name="report_date" readonly="1"/>
+
+                            <field name="fixed_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                        <page string="Photos">
+                            <field name="images" widget="many2many_binary"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_rental_damage_line_search" model="ir.ui.view">
+        <field name="name">rental.damage.line.search</field>
+        <field name="model">rental.damage.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="product_id"/>
+                <filter name="filter_state_open" string="Open" domain="[('state','=','open')]"/>
+                <filter name="filter_state_fixed" string="Fixed" domain="[('state','=','fixed')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Product" name="group_by_product"  context="{'group_by': 'product_id'}"/>
+                    <filter string="Area" name="group_by_area"  context="{'group_by': 'area'}"/>
+                    <filter string="Severity" name="group_by_severity"  context="{'group_by': 'severity'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_rental_damage_line" model="ir.actions.act_window">
+        <field name="name">Damage Findings</field>
+        <field name="res_model">rental.damage.line</field>
+        <field name="view_mode">list,form,kanban,pivot,graph</field>
+        <field name="context">{
+                'search_default_filter_state_open': True}
+        </field>
+    </record>
+</odoo>

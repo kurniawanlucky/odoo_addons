@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Sequence for Rental Damage -->
+    <record id="seq_rental_damage" model="ir.sequence">
+        <field name="name">Rental Damage</field>
+        <field name="code">rental.damage</field>
+        <field name="prefix">DMG</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

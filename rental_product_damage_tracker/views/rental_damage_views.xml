@@ -1,0 +1,84 @@
+<odoo>
+    <record id="view_rental_damage_tree" model="ir.ui.view">
+        <field name="name">rental.damage.tree</field>
+        <field name="model">rental.damage</field>
+        <field name="arch" type="xml">
+            <list string="Damage Reports" default_order="report_date desc">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="report_date"/>
+                <field name="product_id"/>
+                <field name="open_line_count"/>
+                <field name="fixed_line_count"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_rental_damage_form" model="ir.ui.view">
+        <field name="name">rental.damage.form</field>
+        <field name="model">rental.damage</field>
+        <field name="arch" type="xml">
+            <form string="Damage Report">
+                <header>
+                    <button name="action_confirm" string="Confirm"
+                        type="object" class="oe_highlight" data-hotkey="c" title="Confirm"
+                        invisible="state in ('confirmed', 'closed')"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="type"/>
+                            <field name="report_date"/>
+                        </group>
+                        <group>
+                            <field name="product_id"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Damage Lines">
+                            <field name="line_ids" context="{'form_view_ref': 'rental_product_damage_tracker.view_rental_damage_line_form'}">
+                                <list string="Findings">
+                                    <field name="state" widget="badge"/>
+                                    <field name="area"/>
+                                    <field name="severity"/>
+                                    <field name="name"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_rental_damage_search" model="ir.ui.view">
+        <field name="name">rental.damage.search</field>
+        <field name="model">rental.damage</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="product_id"/>
+                <filter name="type_check_in" string="Check-in" domain="[('type','=','check_in')]"/>
+                <filter name="type_check_out" string="Check-out" domain="[('type','=','check_out')]"/>
+                <filter name="state_draft" string="Draft" domain="[('state','=','draft')]"/>
+                <filter name="state_confirmed" string="Confirmed" domain="[('state','=','confirmed')]"/>
+                <filter name="state_closed" string="Closed" domain="[('state','=','closed')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Product" name="group_by_product" context="{'group_by': 'product_id'}"/>
+                    <filter string="Type" name="group_by_type" context="{'group_by': 'type'}"/>
+                    <filter string="Date" name="group_by_day" context="{'group_by': 'report_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_rental_damage" model="ir.actions.act_window">
+        <field name="name">Damage Reports</field>
+        <field name="res_model">rental.damage</field>
+        <field name="context">{'search_default_state_confirmed': 1}</field>
+    </record>
+</odoo>

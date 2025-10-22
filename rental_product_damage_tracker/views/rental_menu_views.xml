@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem id="menu_rental_damage_root" name="Damages" parent="rental_menu_base.menu_rental_root" sequence="50"/>
+    <menuitem id="menu_rental_damage_reports" name="Reports" parent="menu_rental_damage_root" action="action_rental_damage" sequence="10"/>
+    <menuitem id="menu_rental_damage_lines" name="Findings" parent="menu_rental_damage_root" action="action_rental_damage_line" sequence="20"/>
+</odoo>

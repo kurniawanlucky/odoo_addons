@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rental_damage_user,Rental Damage User,model_rental_damage,sales_team.group_sale_salesman,1,1,1,0
+access_rental_damage_manager,Rental Damage Manager,model_rental_damage,sales_team.group_sale_manager,1,1,1,1
+access_rental_damage_line_user,Rental Damage Line User,model_rental_damage_line,sales_team.group_sale_salesman,1,1,1,0
+access_rental_damage_line_manager,Rental Damage Line Manager,model_rental_damage_line,sales_team.group_sale_manager,1,1,1,1
