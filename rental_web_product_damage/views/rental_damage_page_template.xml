@@ -1,0 +1,71 @@
+<odoo>
+    <template id="damage_page_template" name="Rental Damage Public Page">
+        <t t-call="website.layout">
+            <div class="container mt-5 mb-5">
+                <div class="text-center mb-4">
+                    <h2>Damage Report for <t t-esc="product.name"/></h2>
+                </div>
+                <t t-if="damages">
+                    <t t-foreach="damages" t-as="damage">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">
+                                    <t t-esc="damage.name"/> -
+                                    <span class="badge bg-secondary"><t t-esc="damage.type"/></span>
+                                    <span class="badge bg-info text-dark"><t t-esc="damage.state"/></span>
+                                </h5>
+                                <small class="text-muted">
+                                    <t t-esc="damage.report_date.strftime('%Y-%m-%d %H:%M')"/>
+                                </small>
+                            </div>
+                            <div class="card-body">
+                                <t t-if="damage.line_ids">
+                                    <div class="row">
+                                        <t t-foreach="damage.line_ids.filtered(lambda l: l.state == 'open')" t-as="line">
+                                            <div class="col-md-6 mb-3">
+                                                <div class="border rounded p-3 h-100">
+                                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                                        <h6 class="mb-0"><t t-esc="line.name"/></h6>
+                                                        <span class="badge bg-warning text-dark"><t t-esc="line.severity"/></span>
+                                                    </div>
+                                                    <p class="text-muted mb-1">
+                                                        <strong>Area:</strong> <t t-esc="line.area or '-'"/>
+                                                    </p>
+                                                    <p class="mb-2"><t t-esc="line.description or 'No description'"/></p>
+
+                                                    <t t-if="line.cover_image">
+                                                        <img t-att-src="'data:image/png;base64,%s' % line.cover_image.decode()"
+                                                             class="img-fluid rounded mb-2"
+                                                             style="max-height: 250px; object-fit: cover;"/>
+                                                    </t>
+
+                                                    <t t-if="line.images">
+                                                        <div class="d-flex flex-wrap gap-2">
+                                                            <t t-foreach="line.images" t-as="img">
+                                                                <img t-att-src="'/web/image/%s' % img.id"
+                                                                     class="rounded shadow-sm"
+                                                                     style="height:100px; width:100px; object-fit:cover;"/>
+                                                            </t>
+                                                        </div>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div class="alert alert-light">No damage details found.</div>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+                <t t-else="">
+                    <div class="alert alert-info text-center mt-4">
+                        No damages reported for this product.
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>
