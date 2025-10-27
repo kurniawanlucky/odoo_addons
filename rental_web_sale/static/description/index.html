@@ -1,0 +1,138 @@
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h2 class="oe_slogan" style="color:#875A7B;">Rental Management System</h2>
+    <h3 class="oe_slogan">Manage rental products, availability, pricing, and scheduling easily</h3>
+    <div class="oe_span12">
+      <p class="oe_mt32">
+        This module extends the Odoo Sales and Website apps to provide a complete rental workflow.
+        It allows you to define <b>rental products</b>, set hourly/daily/weekly pricing, control availability,
+        and prevent double bookings both in backend and website.
+      </p>
+      <p>
+        Before installing, make sure to install the dependency:
+        <b><a href="https://apps.odoo.com/apps/modules/18.0/rental_product_base" target="_blank">Rental Product Base</a></b>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Key Features -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Key Features</h3>
+    <div class="oe_span6">
+      <ul>
+        <li>New <b>Product Type: Rental</b></li>
+        <li>Flexible pricing per hour, day, or week</li>
+        <li>Automatic rental duration breakdown (weeks/days/hours)</li>
+        <li>Prevent overlapping rentals (double booking protection)</li>
+        <li>Auto-calculated total rental amount</li>
+        <li>Availability check before order confirmation</li>
+        <li>Integrated with Odoo Website Cart & Checkout</li>
+      </ul>
+    </div>
+    <div class="oe_span6">
+      <img class="oe_picture oe_screenshot" src="banner.png" alt="Rental Management Example"/>
+    </div>
+  </div>
+</section>
+
+<!-- Website Rental -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Website Integration</h3>
+    <div class="oe_span6">
+      <ul>
+        <li>Customers select <b>rental start</b> and <b>end</b> dates before adding to cart</li>
+        <li>Live price preview based on selected duration</li>
+        <li>Automatic availability validation to prevent double booking</li>
+        <li>Cart and checkout retain correct rental pricing</li>
+        <li>Rental dates and duration visible on sales order lines</li>
+      </ul>
+    </div>
+    <div class="oe_span6">
+      <img class="oe_picture oe_screenshot" src="banner.png" alt="Website Rental Flow"/>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Example -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Rental Pricing Example</h3>
+    <div class="oe_span12">
+      <table class="table table-bordered">
+        <thead style="background-color:#EEE;">
+          <tr>
+            <th>Field</th>
+            <th>Description</th>
+            <th>Example Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><b>rental_price_per_hour</b></td><td>Price for 1 hour rental</td><td>10.00</td></tr>
+          <tr><td><b>rental_price_per_day</b></td><td>Price for 1 day (24 hours)</td><td>100.00</td></tr>
+          <tr><td><b>rental_price_per_week</b></td><td>Price for 1 week (7 days)</td><td>600.00</td></tr>
+          <tr><td><b>rental_min_hours</b></td><td>Minimum hours allowed</td><td>4</td></tr>
+          <tr><td><b>rental_min_days</b></td><td>Minimum days allowed</td><td>1</td></tr>
+          <tr><td><b>rental_min_weeks</b></td><td>Minimum weeks allowed</td><td>0</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Example: If a product is rented for <b>1 day and 4 hours</b> →
+        (1 × 100) + (4 × 10) = <b>140.00</b>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Backend Enhancements -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Backend Enhancements</h3>
+    <div class="oe_span6">
+      <ul>
+        <li>Rental start/end fields on <b>Sale Order Line</b></li>
+        <li>Availability check prevents overlapping orders</li>
+        <li>Rental price auto-calculated on product select</li>
+        <li>Smart button on product: view active rentals</li>
+        <li>Wizard: add rental line with date-first flow</li>
+      </ul>
+    </div>
+    <div class="oe_span6">
+      <img class="oe_picture oe_screenshot" src="img_1.png" alt="Backend Rental Example"/>
+    </div>
+  </div>
+</section>
+
+<!-- Validation -->
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Validation and Protection</h3>
+    <div class="oe_span12">
+      <ul>
+        <li>Blocks booking when product already rented during selected period</li>
+        <li>Ensures rental end date is after start date</li>
+        <li>Reapplies rental pricing at checkout and partner change</li>
+        <li>All rental rules handled both in backend and website</li>
+      </ul>
+      <img class="oe_picture oe_screenshot" src="img_2.png" alt="Overlap Warning Example"/>
+    </div>
+  </div>
+</section>
+
+<div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Related Modules</h3>
+    <ul>
+        <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_menu_base">rental_menu_base</a></b> – Rental Based Menu</li>
+        <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_sale_product">rental_sale_product</a></b> – Rental Sale</li>
+    </ul>
+</div>
+
+<!-- Footer -->
+<section class="oe_container oe_separator">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Simplify and automate your rental operations</h3>
+    <p class="oe_centeralign">Track, price, and manage your rentals effortlessly inside Odoo 18.</p>
+  </div>
+</section>
