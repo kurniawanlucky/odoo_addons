@@ -15,7 +15,6 @@ class RentalDamage(models.Model):
     product_id = fields.Many2one("product.product", required=True, tracking=True, index=True,
                                  domain="[('type', '=', 'rental')]")
     report_date = fields.Datetime(default=lambda self: fields.Datetime.now(), required=True, index=True)
-    rental_order_id = fields.Many2one("sale.order")
     state = fields.Selection([
         ("draft", "Draft"),
         ("confirmed", "Confirmed"),

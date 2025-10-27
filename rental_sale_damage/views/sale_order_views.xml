@@ -1,0 +1,16 @@
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">rental_sale_damage.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button type="object" name="action_open_rental_damage"
+                    class="oe_stat_button" icon="fa-wrench"
+                    string="Damage Reports" invisible="state == 'cancel'">
+                    <field name="rental_damage_count" widget="statinfo"/>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

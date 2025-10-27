@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_rental_damage_form" model="ir.ui.view">
+        <field name="name">rental_sale_damage.view_rental_damage_form</field>
+        <field name="model">rental.damage</field>
+        <field name="inherit_id" ref="rental_product_damage_tracker.view_rental_damage_form"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="before">
+                <field name="rental_order_id" options="{'no_create_edit': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_rental_damage_tree" model="ir.ui.view">
+        <field name="name">rental_sale_damage.view_rental_damage_tree</field>
+        <field name="model">rental.damage</field>
+        <field name="inherit_id" ref="rental_product_damage_tracker.view_rental_damage_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="rental_order_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>
