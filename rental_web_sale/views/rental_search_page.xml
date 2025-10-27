@@ -1,0 +1,40 @@
+<odoo>
+    <template id="rental_search_page" name="Rental Search Page">
+        <t t-call="website.layout">
+            <section class="rental-hero">
+                <div class="hero-content">
+                    <h1>Find Your Perfect Rental</h1>
+                    <p>Choose your rental period and check availability instantly</p>
+
+                    <form action="/rental/results" method="get" class="rental-search-form">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            <input type="date" name="start_date" class="form-control"/>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-clock"></i></span>
+                            <input type="time" name="start_time" class="form-control" value="09:00"/>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            <input type="date" name="end_date" class="form-control"/>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-clock"></i></span>
+                            <input type="time" name="end_time" class="form-control" value="09:00"/>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger rental-search-btn">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </t>
+    </template>
+
+
+</odoo>

@@ -1,0 +1,22 @@
+<odoo>
+    <template id="product_rental_pdp" inherit_id="website_sale.product" name="Rental Dates on PDP">
+        <xpath expr="//div[@id='product_details']//form[@action='/shop/cart/update']//div[@id='o_wsale_cta_wrapper']" position="before">
+          <t t-if="product.type == 'rental'">
+            <div class="alert alert-info mb-3">
+              <i class="fa fa-clock-o"/> Select your rental period.
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-12 col-md-6">
+                <label class="form-label">Rental Start</label>
+                <input type="text" class="form-control" name="rental_start_date" placeholder="YYYY-MM-DD HH:MM"/>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label">Rental End</label>
+                <input type="text" class="form-control" name="rental_end_date" placeholder="YYYY-MM-DD HH:MM"/>
+              </div>
+            </div>
+            <div id="rental_price_preview" class="text-muted small mb-2"/>
+          </t>
+        </xpath>
+    </template>
+</odoo>

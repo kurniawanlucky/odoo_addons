@@ -1,0 +1,61 @@
+<odoo>
+    <template id="rental_search_results" name="Rental Search Results">
+        <t t-call="website.layout">
+            <section class="rental-hero">
+                <div class="hero-content">
+                    <h1>Find Your Perfect Rental</h1>
+                    <p>Choose your rental period and check availability instantly</p>
+
+                    <form action="/rental/results" method="get" class="rental-search-form">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            <input type="date" name="start_date" class="form-control"/>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-clock"></i></span>
+                            <input type="time" name="start_time" class="form-control" value="09:00"/>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                            <input type="date" name="end_date" class="form-control"/>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-clock"></i></span>
+                            <input type="time" name="end_time" class="form-control" value="09:00"/>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger rental-search-btn">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <div id="wrap" class="container my-5">
+              <h3>Available Rentals</h3>
+              <p class="text-muted">
+                From <t t-esc="start_date"/> <t t-esc="start_time"/> to <t t-esc="end_date"/> <t t-esc="end_time"/>
+              </p>
+
+              <div class="row mt-4">
+                <t t-if="not products"><p>No available rentals for the selected dates.</p></t>
+                <t t-foreach="products" t-as="product">
+                  <div class="col-md-3 mb-4">
+                    <div class="card shadow-sm rental-card">
+                      <img t-att-src="'/web/image/product.product/%s/image_1920' % product.id" class="card-img-top" alt=""/>
+                      <div class="card-body text-center">
+                        <h5 t-esc="product.name"/>
+                        <a t-att-href="'/rental/add/%s?start_date=%s&amp;start_time=%s&amp;end_date=%s&amp;end_time=%s' % (product.id, start_date, start_time, end_date, end_time)"
+                           class="btn btn-primary w-100">Rent Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </t>
+              </div>
+            </div>
+        </t>
+    </template>
+</odoo>

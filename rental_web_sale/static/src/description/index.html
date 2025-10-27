@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8"/>
+      <title>Rental for Sales & Website (Odoo 18)</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <style>
+        :root{
+          --bg:#0f172a;--fg:#0b1020;--ink:#0d1326;--text:#111827;--muted:#64748b;
+          --primary:#4f46e5;--primary-ink:#3730a3;--ok:#16a34a;--warn:#f59e0b;--bad:#dc2626;
+          --card:#ffffff;--chip:#eef2ff;
+        }
+        *{box-sizing:border-box}
+        body{
+          margin:0; font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";
+          color:var(--text); background:#fff;
+        }
+        .hero{
+          background: radial-gradient(1200px 400px at 60% -10%, #eef2ff 0, #fff 60%);
+          border-bottom:1px solid #e5e7eb; padding:40px 24px 24px;
+        }
+        .container{max-width:1024px;margin:0 auto;padding:0 12px}
+        .title{font-size:32px;line-height:1.15;margin:0 0 6px;font-weight:800;letter-spacing:-.02em}
+        .subtitle{color:var(--muted);margin:0 0 10px}
+        .badges{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+        .badge{font-size:12px;padding:6px 10px;border-radius:999px;background:var(--chip);color:var(--primary-ink);font-weight:600;border:1px solid #e0e7ff}
+        .grid{display:grid;grid-template-columns:1fr;gap:16px}
+        @media (min-width:900px){.grid{grid-template-columns:1.2fr .8fr}}
+        .card{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;padding:18px}
+        h2{font-size:22px;margin:8px 0 12px}
+        h3{font-size:18px;margin:14px 0 8px}
+        ul{margin:8px 0 8px 20px}
+        code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+        pre{background:#0b1020;color:#e5e7eb;border-radius:12px;padding:14px;overflow:auto;border:1px solid #1118271a}
+        .toc a{color:var(--primary-ink);text-decoration:none}
+        .toc a:hover{text-decoration:underline}
+        .highlight{background:#fefce8;border:1px solid #f59e0b33;border-radius:10px;padding:10px}
+        .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+        .screens{display:grid;grid-template-columns:1fr;gap:12px}
+        @media (min-width:700px){.screens{grid-template-columns:1fr 1fr}}
+        .screen{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}
+        .screen img{display:block;width:100%;height:auto}
+        .footnote{color:var(--muted);font-size:13px}
+        .kbd{padding:2px 6px;border:1px solid #e5e7eb;border-bottom-width:2px;border-radius:6px;background:#f8fafc}
+        .pill{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid #e5e7eb;color:#334155;background:#f8fafc;font-size:12px}
+        .table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:12px;border:1px solid #e5e7eb}
+        .table th,.table td{padding:10px 12px;border-top:1px solid #eef2f7}
+        .table th{background:#f8fafc;text-align:left;font-weight:700}
+        .note{font-size:13px;color:#475569}
+        .center{text-align:center}
+      </style>
+    </head>
+    <body>
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <h1 class="title">Rental for Sales & Website (Odoo 18)</h1>
+          <p class="subtitle">Pick rental dates first, see only available products, correct pricing across website & backend, and prevent double booking.</p>
+          <div class="badges">
+            <span class="badge">Odoo 18</span>
+            <span class="badge">Website + Sales</span>
+            <span class="badge">No double booking</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="container" style="padding:22px 12px 40px">
+        <div class="grid">
+          <!-- LEFT -->
+          <div class="card">
+            <h2 id="features">Features</h2>
+            <ul>
+              <li><strong>Date-first flow</strong> on <span class="pill">sale.order.line</span> form — pick <em>Rental Start</em> and <em>End</em> before product.</li>
+              <li><strong>Availability filter</strong>: product dropdown shows only items free in the chosen window (no overlap with confirmed/done orders).</li>
+              <li><strong>Accurate pricing</strong> with weeks/days/hours + minimums + rounding, mirrored on Website & Sales.</li>
+              <li><strong>Website integration</strong>: Product page date inputs, live price preview, cart shows dates & breakdown, add-to-cart enforces availability.</li>
+              <li><strong>Checkout-safe</strong>: Re-applies rental price after address submit/pricelist changes so it never reverts to catalog price.</li>
+            </ul>
+
+            <h2 id="how-it-works">How it works</h2>
+            <ol>
+              <li>User selects <em>start</em>/<em>end</em> → system computes hours and builds a <code>weeks/days/hours</code> breakdown.</li>
+              <li>Minimums & rounding are applied, price computed from <code>rental_price_per_week/day/hour</code>.</li>
+              <li>Availability excludes items with overlapping rentals in <span class="pill">sale</span>/<span class="pill">done</span> states.</li>
+              <li>Website/cart lines store the dates; pricing is re-enforced at checkout steps.</li>
+            </ol>
+
+            <h2 id="dependencies">Dependencies</h2>
+            <table class="table">
+              <thead><tr><th>Module</th><th>Why</th></tr></thead>
+              <tbody>
+                <tr><td><code>sale</code></td><td>Sales orders & order lines</td></tr>
+                <tr><td><code>product</code></td><td>Rental type & price fields</td></tr>
+                <tr><td><code>website_sale</code></td><td>Website shop/cart/checkout integration</td></tr>
+              </tbody>
+            </table>
+
+            <h2 id="install">Installation</h2>
+            <ol>
+              <li>Copy the module into your addons path.</li>
+              <li>Update apps list and install.</li>
+              <li>Ensure your products to rent have <code>type = rental</code> and rental price fields set.</li>
+            </ol>
+
+            <h2 id="configuration">Configuration</h2>
+            <ul>
+              <li>On <strong>Product Template</strong>: set <code>rental_price_per_hour/day/week</code> and minimums.</li>
+              <li>On <strong>Sales Order Line</strong>: date fields are first; the product domain auto-filters by availability.</li>
+              <li>Website PDP shows date inputs; enabling live price preview requires the provided JS asset.</li>
+            </ul>
+
+            <h2 id="usage">Usage (Website)</h2>
+            <ol>
+              <li>Open a rental product page → choose <em>Rental Start</em>/<em>End</em>.</li>
+              <li>Check live price preview → add to cart.</li>
+              <li>Cart line displays dates and the duration breakdown.</li>
+              <li>Proceed to checkout — pricing remains the rental price.</li>
+            </ol>
+
+            <h2 id="usage-backend">Usage (Sales)</h2>
+            <ul>
+              <li>Click <strong>Add Rental Line</strong> wizard on an order (or add inline).</li>
+              <li>Pick dates → select from available products → price is computed automatically.</li>
+            </ul>
+
+            <h2 id="security">Security</h2>
+            <ul>
+              <li>Wizard is <code>TransientModel</code> (no extra rules needed).</li>
+              <li>Website writes are done with proper sudo on the line after cart update.</li>
+            </ul>
+
+            <h2 id="tech-notes">Technical notes</h2>
+            <ul>
+              <li>Overlap rule: <code>(start &lt;= existing_end) AND (end &gt;= existing_start)</code>, states in <code>['sale','done']</code>.</li>
+              <li>Pricing is enforced on:
+                <ul>
+                  <li>Website add-to-cart</li>
+                  <li><code>/shop/address/submit</code> post (override)</li>
+                  <li>Partner / Pricelist onchanges (server-side safeguard)</li>
+                </ul>
+              </li>
+              <li>Optional: prevent cart line merge using a “Rental Period” no-variant attribute.</li>
+            </ul>
+
+            <h2 id="changelog">Changelog</h2>
+            <ul>
+              <li><strong>1.0.0</strong> — Initial release for Odoo 18 with website + sales integration.</li>
+            </ul>
+
+            <h2 id="support">Support</h2>
+            <p class="note">
+              Need help or customizations (multi-unit capacity, deposits, availability calendars, pickup/return slots)?
+              Contact the developer.
+            </p>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="card">
+
+            <h3 style="margin-top:18px">Screenshots</h3>
+            <div class="screens">
+              <div class="screen">
+                <img src="banner.png" alt="Product page with date inputs"/>
+              </div>
+              <div class="screen">
+                <img src="img_1.png" alt="Cart with rental dates & breakdown"/>
+              </div>
+              <div class="screen">
+                <img src="img_2.png" alt="result of search"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="oe_row oe_spaced">
+        <h3 class="oe_slogan">Module Dependencies</h3>
+        <div class="oe_span12">
+            <ul>
+                <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_sale_product">rental_sale_product</a></b> — manages rental sales and durations</li>
+                <li><b><a href="https://apps.odoo.com/apps/modules/18.0/rental_product_base">rental_product_base</a></b> — Base product rental</li>
+            </ul>
+            <p>This module requires both dependencies to be installed first.</p>
+        </div>
+    </div>
+
+    </body>
+</html>
