@@ -52,19 +52,19 @@
         </field>
     </record>
 
-    <record id="sale_rental_view_calendar" model="ir.actions.act_window.view">
-        <field name="sequence" eval="3"/>
-        <field name="view_mode">calendar</field>
-        <field name="view_id" ref="view_sale_rental_calendar"/>
-        <field name="act_window_id" ref="action_sale_rental_calendar"/>
-    </record>
-
     <record id="action_sale_rental_calendar" model="ir.actions.act_window">
         <field name="name">Rental Calendar</field>
         <field name="res_model">sale.order.line</field>
         <field name="view_mode">calendar</field>
         <field name="view_id" ref="view_sale_rental_calendar"/>
         <field name="domain">[('product_id.type','=','rental')]</field>
+    </record>
+
+    <record id="sale_rental_view_calendar" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="view_sale_rental_calendar"/>
+        <field name="act_window_id" ref="action_sale_rental_calendar"/>
     </record>
 
     <menuitem id="menu_sale_rental_calendar"
