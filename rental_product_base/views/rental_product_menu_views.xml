@@ -1,0 +1,4 @@
+<odoo>
+    <menuitem id="menu_rental_product_root" name="Products" parent="rental_menu_base.menu_rental_root" sequence="10"
+              action="action_rental_product"/>
+</odoo>

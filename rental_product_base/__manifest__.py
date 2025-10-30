@@ -8,9 +8,10 @@
     'author': 'Lucky Kurniawan',
     'website': 'https://github.com/kurniawanlucky/odoo_addons',
     'category': 'Product Management',
-    'depends': ['product'],
+    'depends': ['product', 'rental_menu_base'],
     'data': [
         'views/product_template_views.xml',
+        'views/rental_product_menu_views.xml',
     ],
     'images': ['static/description/banner.png'],
     'license': 'AGPL-3',
