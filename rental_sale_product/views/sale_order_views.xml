@@ -23,11 +23,13 @@
                 <field name="rental_total_price" readonly="1"/>
             </xpath>
 
-            <!-- Form view -->
-            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="before">
-                <field name="product_type" invisible="1"/>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_updatable']" position="after">
                 <field name="rental_start_date" widget="datetime" required="product_type == 'rental'"/>
                 <field name="rental_end_date" widget="datetime" required="product_type == 'rental'"/>
+            </xpath>
+
+            <!-- Form view -->
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="before">
                 <field name="rental_duration_hours" readonly="1"/>
                 <field name="rental_pricing_breakdown" readonly="1"/>
                 <field name="rental_total_price" readonly="1"/>
@@ -67,9 +69,39 @@
         <field name="act_window_id" ref="action_sale_rental_calendar"/>
     </record>
 
-    <menuitem id="menu_sale_rental_calendar"
-              name="Rental Calendar"
-              parent="sale.sale_order_menu"
-              action="action_sale_rental_calendar"
-              sequence="50"/>
+    <record id="view_sale_order_rental_search" model="ir.ui.view">
+        <field name="name">sale.order.search.rental</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <search string="Search Rental Orders">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter string="Quotations" name="draft" domain="[('state', 'in', ('draft', 'sent'))]"/>
+                <filter name="rental_only" string="Rental" domain="[('is_rental_order','=',True)]" context="{'group_by': 'is_rental_order'}"/>
+                <filter name="my_orders" string="My Orders" domain="[('user_id','=',uid)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_partner" string="Customer" context="{'group_by':'partner_id'}"/>
+                    <filter name="group_user" string="Salesperson" context="{'group_by':'user_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sale_quotations_rental" model="ir.actions.act_window">
+        <field name="name">Quotations</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,form,kanban,calendar,pivot,graph</field>
+        <field name="domain">[('is_rental_order','=',True)]</field>
+        <field name="context">{'search_default_draft': True}</field>
+        <field name="search_view_id" ref="view_sale_order_rental_search"/>
+    </record>
+
+    <record id="action_sale_order_rental" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,form,kanban,calendar,pivot,graph</field>
+        <field name="domain">[('is_rental_order','=',True), ('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+        <field name="search_view_id" ref="view_sale_order_rental_search"/>
+    </record>
 </odoo>

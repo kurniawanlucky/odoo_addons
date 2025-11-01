@@ -1,0 +1,9 @@
+<odoo>
+    <menuitem id="menu_rental_order_root" name="Orders" parent="rental_menu_base.menu_rental_root" sequence="10"/>
+    <menuitem id="menu_rental_quotations" name="Quotations" parent="menu_rental_order_root"
+              action="action_sale_quotations_rental" sequence="10"/>
+    <menuitem id="menu_rental_order" name="Orders" parent="menu_rental_order_root"
+              action="action_sale_order_rental" sequence="20"/>
+    <menuitem id="menu_sale_rental_calendar" name="Rental Calendar"
+              parent="menu_rental_order_root" action="action_sale_rental_calendar" sequence="50"/>
+</odoo>
