@@ -14,6 +14,7 @@
         'data/rental_deposit_sequence.xml',
         'views/rental_deposit_views.xml',
         'views/res_partner_views.xml',
+        'views/sale_order_views.xml',
     ],
     'images': ['static/description/banner.png'],
     'license': 'AGPL-3',
