@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="website_contactus_helpdesk" inherit_id="website.contactus" name="Contact Us Helpdesk Ticket">
+        <xpath expr="//t[@t-set='contactus_form_values']" position="replace">
+            <t t-set="contactus_form_values" t-value="{
+                'email_to': res_company.email,
+                'partner_name': request.params.get('partner_name') or request.params.get('name', ''),
+                'phone': request.params.get('phone', ''),
+                'partner_email': request.params.get('partner_email') or request.params.get('email_from', ''),
+                'company': request.params.get('company', ''),
+                'name': request.params.get('name', '') or request.params.get('subject', ''),
+                'description': request.params.get('description', ''),
+            }"/>
+        </xpath>
+
+        <xpath expr="//form[@id='contactus_form']" position="attributes">
+            <attribute name="data-model_name">helpdesk.ticket</attribute>
+        </xpath>
+
+        <xpath expr="//input[@id='contact1']" position="replace">
+            <input id="contact1" type="text" class="form-control s_website_form_input" name="partner_name" required="" data-fill-with="name"/>
+        </xpath>
+
+        <xpath expr="//input[@id='contact3']" position="replace">
+            <input id="contact3" type="email" class="form-control s_website_form_input" name="partner_email" required="" data-fill-with="email"/>
+        </xpath>
+
+        <xpath expr="//input[@id='contact5']" position="replace">
+            <input id="contact5" type="text" class="form-control s_website_form_input" name="name" required=""/>
+        </xpath>
+
+        <xpath expr="//div[contains(@class, 's_website_form_dnone')][.//input[@name='email_to']]" position="replace">
+            <t/>
+        </xpath>
+    </template>
+</odoo>
