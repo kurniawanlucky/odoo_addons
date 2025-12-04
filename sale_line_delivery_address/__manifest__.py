@@ -9,6 +9,7 @@
     'website': 'https://github.com/kurniawanlucky/odoo_addons',
     'category': 'Sales',
     'depends': ['sale_stock'],
+    'images': ['static/description/banner.png'],
     'data': [
         'views/sale_order_views.xml',
     ],
